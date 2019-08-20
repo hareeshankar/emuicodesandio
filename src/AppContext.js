@@ -160,6 +160,36 @@ export class AppContextProvider extends Component {
               }
             });
   };
+  signup = credentials => {
+    console.log(credentials);
+     return eAxios
+      .post(
+        "https://eventmanagerapi.herokuapp.com/api/Users",
+        credentials,
+        this.axiosConfig
+      )
+      .then(response => {
+        console.log("RESPONSE RECEIVED: ", response);
+        this.setState(state => ({ token: response.data.id }));
+        const userId = response.data.userId;
+        localStorage.setItem("token", response.data.id);
+        this.getUser(userId);
+        return response;
+      })
+      .catch(err => {
+        console.log("AXIOS ERROR: ", err);
+        console.log(err.response.data.error.statuscode);
+        let errmsgobj = JSON.stringify(err.response.data.error.statusCode);
+        let mesg = "";
+        if (errmsgobj === "401") {
+          mesg = "Login Failed. Username or password incorrect";
+          console.log(mesg);
+          this.setState(state => ({
+            errmsg: mesg
+          }));
+        }
+      });
+  };
 
   logout = () => {
     localStorage.removeItem("user");
