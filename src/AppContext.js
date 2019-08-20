@@ -26,11 +26,11 @@ export class AppContextProvider extends Component {
       errmsg: null
     };
     let axiosConfig = {
-        headers: {
-          "Content-Type": "application/json;charset=UTF-8",
-          "Access-Control-Allow-Origin": "*"
-        }
-    }
+      headers: {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Access-Control-Allow-Origin": "*"
+      }
+    };
   }
 
   //componentDidMount() {
@@ -110,7 +110,9 @@ export class AppContextProvider extends Component {
             userId: res.data.id
           }
         });
-        console.log("user updated in context state: " + JSON.stringify(this.state.user));
+        console.log(
+          "user updated in context state: " + JSON.stringify(this.state.user)
+        );
         localStorage.setItem("user", JSON.stringify(this.state.user));
       })
       .catch(err => {
@@ -131,40 +133,10 @@ export class AppContextProvider extends Component {
   };
 
   login = credentials => {
-          console.log(credentials);
-           return eAxios
-            .post(
-              "https://eventmanagerapi.herokuapp.com/api/Users/login",
-              credentials,
-              this.axiosConfig
-            )
-            .then(response => {
-              console.log("RESPONSE RECEIVED: ", response);
-              this.setState(state => ({ token: response.data.id }));
-              const userId = response.data.userId;
-              localStorage.setItem("token", response.data.id);
-              this.getUser(userId);
-              return response;
-            })
-            .catch(err => {
-              console.log("AXIOS ERROR: ", err);
-              console.log(err.response.data.error.statuscode);
-              let errmsgobj = JSON.stringify(err.response.data.error.statusCode);
-              let mesg = "";
-              if (errmsgobj === "401") {
-                mesg = "Login Failed. Username or password incorrect";
-                console.log(mesg);
-                this.setState(state => ({
-                  errmsg: mesg
-                }));
-              }
-            });
-  };
-  signup = credentials => {
     console.log(credentials);
-     return eAxios
+    return eAxios
       .post(
-        "https://eventmanagerapi.herokuapp.com/api/Users",
+        "https://eventmanagerapi.herokuapp.com/api/Users/login",
         credentials,
         this.axiosConfig
       )
@@ -183,6 +155,36 @@ export class AppContextProvider extends Component {
         let mesg = "";
         if (errmsgobj === "401") {
           mesg = "Login Failed. Username or password incorrect";
+          console.log(mesg);
+          this.setState(state => ({
+            errmsg: mesg
+          }));
+        }
+      });
+  };
+  signup = credentials => {
+    console.log(credentials);
+    return eAxios
+      .post(
+        "https://eventmanagerapi.herokuapp.com/api/Users",
+        credentials,
+        this.axiosConfig
+      )
+      .then(response => {
+        console.log("RESPONSE RECEIVED: ", response);
+        /* this.setState(state => ({ token: response.data.id }));
+        const userId = response.data.userId;
+        localStorage.setItem("token", response.data.id);
+        this.getUser(userId); */
+        return response;
+      })
+      .catch(err => {
+        console.log("AXIOS ERROR: ", err);
+        console.log(err.response.data.error.statuscode);
+        let errmsgobj = JSON.stringify(err.response.data.error.statusCode);
+        let mesg = "";
+        if (errmsgobj === "401") {
+          mesg = "Sign Up Failed.";
           console.log(mesg);
           this.setState(state => ({
             errmsg: mesg
@@ -212,6 +214,7 @@ export class AppContextProvider extends Component {
           //signup: this.signup,
           login: this.login,
           logout: this.logout,
+          signup: this.signup,
           getUser: this.getUser,
           ...this.state
         }}
