@@ -176,6 +176,9 @@ export class AppContextProvider extends Component {
         const userId = response.data.userId;
         localStorage.setItem("token", response.data.id);
         this.getUser(userId); */
+        this.setState(state => ({
+          errmsg: "Sign up Successful. Please login !"
+        }));
         return response;
       })
       .catch(err => {
@@ -199,7 +202,8 @@ export class AppContextProvider extends Component {
     this.setState({
       events: [],
       user: {},
-      token: ""
+      token: "",
+      errmsg: null
     });
   };
 
