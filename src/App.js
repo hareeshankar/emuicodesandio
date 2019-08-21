@@ -14,14 +14,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-      <AppBar />
+        <AppBar />
 
-      <Switch>
-          <Route path="/signup" component={SignUp}/>
-          <Route path="/login" component={SignIn}/>
-          <ProtectedRoute path="/home" component={Home}/>
-          <Route exact path="/" render={() => <Redirect to="/home"/>}/>
-      </Switch>
+        <Switch>
+          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={SignIn} />
+          <ProtectedRoute path="/home" component={Home} />
+          <Route exact path="/" render={() => <Redirect to="/home" />} />
+        </Switch>
       </div>
     );
   }
