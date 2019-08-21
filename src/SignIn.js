@@ -15,7 +15,9 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { withContext } from "./AppContext";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
+import red from "@material-ui/core/colors/red";
 
+const primaryred = red[500]; // #F44336
 const styles = theme => ({
   main: {
     width: "auto",
@@ -39,6 +41,11 @@ const styles = theme => ({
   typo: {
     marginTop: theme.spacing.unit * 10,
     textAlign: "center"
+  },
+  typo1: {
+    marginTop: theme.spacing.unit * 10,
+    textAlign: "center",
+    textColor: primaryred
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -133,7 +140,9 @@ class SignIn extends React.Component {
             <Typography component="h5" variant="h6">
               New User ? <Link to="/signup">Sign Up</Link>
             </Typography>
-            <Typography variant="subtitle2">{this.props.errmsg}</Typography>
+            <Typography className={classes.typo1} variant="subtitle2">
+              {this.props.errmsg}
+            </Typography>
           </Paper>
         </main>
       </div>
