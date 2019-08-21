@@ -133,11 +133,7 @@ class SignIn extends React.Component {
             <Typography component="h5" variant="h6">
               New User ? <Link to="/signup">Sign Up</Link>
             </Typography>
-            ! this.props.errmesg (
-            <Typography component="h5" variant="h6">
-              {this.props.errmesg}
-            </Typography>
-            )
+            <Typography variant="subtitle2">{this.props.errmsg}</Typography>
           </Paper>
         </main>
       </div>
