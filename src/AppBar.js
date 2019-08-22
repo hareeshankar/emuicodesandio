@@ -13,7 +13,8 @@ import Button from "@material-ui/core/Button";
 
 const styles = {
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    zIndex: 0
   }
 };
 const theme = createMuiTheme({
@@ -22,10 +23,10 @@ const theme = createMuiTheme({
     secondary: deepPurple
   }
 });
-const SignOutBtn = ({token, logout}) => {
+const SignOutBtn = ({ token, logout }) => {
   // This is a dumb "stateless" component
   return token ? (
-    <div className="buttonnavbar" >
+    <div className="buttonnavbar">
       <Button variant="contained" color="secondary">
         <span href="javascript:;" onClick={logout}>
           Sign out
@@ -42,13 +43,11 @@ function SimpleAppBar(props) {
       <MuiThemeProvider theme={theme}>
         <AppBar>
           <div className="flexbox">
-          <div className="typonav" color="inherit">
-            <span >Event Manager</span>
+            <div className="typonav" color="inherit">
+              <span>Event Manager</span>
+            </div>
+            <SignOutBtn token={props.token} logout={props.logout} />
           </div>
-          <SignOutBtn
-           token = {props.token}
-           logout = {props.logout}
-          /></div>
         </AppBar>
       </MuiThemeProvider>
     </div>
@@ -59,5 +58,5 @@ SimpleAppBar.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const sabwst = withStyles(styles)(SimpleAppBar)
+const sabwst = withStyles(styles)(SimpleAppBar);
 export default withContext(sabwst);

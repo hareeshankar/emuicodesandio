@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { NProgress } from "nprogress";
+//import { loadProgressBar } from "axios-progress-bar";
+import { loadProgressBar } from "axios-progress-bar";
+import NProgress from "nprogress";
 import "axios-progress-bar/dist/nprogress.css";
+
 const eAxios = axios.create();
 /*
 eAxios.interceptors.request.use(config => {
@@ -19,6 +22,7 @@ const AppContext = React.createContext();
 export class AppContextProvider extends Component {
   constructor() {
     super();
+    NProgress.configure({ showSpinner: false });
     this.state = {
       events: [],
       user: JSON.parse(localStorage.getItem("user")) || {},
@@ -134,6 +138,7 @@ export class AppContextProvider extends Component {
 
   login = credentials => {
     console.log(credentials);
+    NProgress.start();
     return eAxios
       .post(
         "https://eventmanagerapi.herokuapp.com/api/Users/login",
@@ -142,6 +147,7 @@ export class AppContextProvider extends Component {
       )
       .then(response => {
         console.log("RESPONSE RECEIVED: ", response);
+        NProgress.done();
         this.setState(state => ({ token: response.data.id }));
         const userId = response.data.userId;
         localStorage.setItem("token", response.data.id);
@@ -150,6 +156,7 @@ export class AppContextProvider extends Component {
       })
       .catch(err => {
         console.log("AXIOS ERROR: ", err);
+        NProgress.done();
         console.log(err.response.data.error.statuscode);
         let errmsgobj = JSON.stringify(err.response.data.error.statusCode);
         let mesg = "";
@@ -164,6 +171,7 @@ export class AppContextProvider extends Component {
   };
   signup = credentials => {
     console.log(credentials);
+
     return eAxios
       .post(
         "https://eventmanagerapi.herokuapp.com/api/Users",

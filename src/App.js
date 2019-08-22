@@ -14,8 +14,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <AppBar />
-
         <Switch>
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={SignIn} />

@@ -43,9 +43,8 @@ const styles = theme => ({
     textAlign: "center"
   },
   typo1: {
-    marginTop: theme.spacing.unit * 10,
     textAlign: "center",
-    textColor: primaryred
+    textColor: "#ff0000"
   },
   avatar: {
     margin: theme.spacing.unit,
@@ -76,7 +75,9 @@ class SignIn extends React.Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state).then(() => this.props.history.push("/home"));
+    this.props.login(this.state).then(() => {
+      this.props.history.push("/home");
+    });
   };
   render() {
     const { classes } = this.props;
@@ -98,6 +99,13 @@ class SignIn extends React.Component {
             </Avatar>
             <Typography component="h1" variant="h5">
               Sign in
+            </Typography>
+            <Typography
+              className={classes.typo1}
+              variant="subtitle2"
+              color="error"
+            >
+              {this.props.errmsg}
             </Typography>
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <FormControl margin="normal" required fullWidth>
@@ -139,9 +147,6 @@ class SignIn extends React.Component {
             <br />
             <Typography component="h5" variant="h6">
               New User ? <Link to="/signup">Sign Up</Link>
-            </Typography>
-            <Typography className={classes.typo1} variant="subtitle2">
-              {this.props.errmsg}
             </Typography>
           </Paper>
         </main>
