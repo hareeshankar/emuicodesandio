@@ -3,7 +3,7 @@ import axios from "axios";
 //import { loadProgressBar } from "axios-progress-bar";
 import { loadProgressBar } from "axios-progress-bar";
 import NProgress from "nprogress";
-import "axios-progress-bar/dist/nprogress.css";
+import "../public/nprogress.css";
 
 const eAxios = axios.create();
 /*
@@ -22,7 +22,7 @@ const AppContext = React.createContext();
 export class AppContextProvider extends Component {
   constructor() {
     super();
-    NProgress.configure({ showSpinner: false });
+    //  NProgress.configure({ showSpinner: false });
     this.state = {
       events: [],
       user: JSON.parse(localStorage.getItem("user")) || {},
