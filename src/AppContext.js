@@ -3,7 +3,7 @@ import axios from "axios";
 //import { loadProgressBar } from "axios-progress-bar";
 import { loadProgressBar } from "axios-progress-bar";
 import NProgress from "nprogress";
-import "../public/nprogress.css";
+import "./nprogress.css";
 
 const eAxios = axios.create();
 /*
