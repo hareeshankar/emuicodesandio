@@ -14,6 +14,7 @@ import Button from "@material-ui/core/Button";
 const styles = {
   root: {
     flexGrow: 1,
+    position: "absolute",
     zIndex: 0
   }
 };
