@@ -172,7 +172,7 @@ export class AppContextProvider extends Component {
   };
   signup = credentials => {
     console.log(credentials);
-
+    NProgress.start();
     return eAxios
       .post(
         "https://eventmanagerapi.herokuapp.com/api/Users",
@@ -180,6 +180,7 @@ export class AppContextProvider extends Component {
         this.axiosConfig
       )
       .then(response => {
+        NProgress.done();
         console.log("RESPONSE RECEIVED: ", response);
         /* this.setState(state => ({ token: response.data.id }));
         const userId = response.data.userId;
@@ -191,6 +192,7 @@ export class AppContextProvider extends Component {
         return response;
       })
       .catch(err => {
+        NProgress.done();
         console.log("AXIOS ERROR: ", err);
         console.log(err.response.data.error.statuscode);
         let errmsgobj = JSON.stringify(err.response.data.error.statusCode);
@@ -206,6 +208,7 @@ export class AppContextProvider extends Component {
   };
 
   logout = () => {
+    NProgress.start();
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     this.setState({
@@ -214,6 +217,7 @@ export class AppContextProvider extends Component {
       token: "",
       errmsg: null
     });
+    NProgress.done();
   };
 
   render() {
