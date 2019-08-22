@@ -23,6 +23,7 @@ export class AppContextProvider extends Component {
   constructor() {
     super();
     //  NProgress.configure({ showSpinner: false });
+    NProgress.configure({ minimum: 0.5 });
     this.state = {
       events: [],
       user: JSON.parse(localStorage.getItem("user")) || {},
