@@ -10,7 +10,7 @@ export default function MaterialTableDemo() {
       { title: "Description", field: "eventdes" }
     ],
     data: [
-      { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
+      { eventname: "Mehmet", eventdate: "Baran", eventloc: 1987, eventdes: 63 },
       {
         eventname: "Hospitality",
         eventdate: "2019-08-27",

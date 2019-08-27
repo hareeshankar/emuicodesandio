@@ -2,8 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { withContext } from "./AppContext";
 import Button from "@material-ui/core/Button";
+import { MaterialTable } from "./Materialtable";
 
-const Welcome = (props) => {
+const Welcome = props => {
   // This is a dumb "stateless" component
   return (
     <div className="white-text">
@@ -13,9 +14,10 @@ const Welcome = (props) => {
       <br />
       <p>Token : {props.token} </p>
       <br />
-      <Button variant="contained" color="primary" onClick="props.logout" >
+      <Button variant="contained" color="primary" onClick="props.logout">
         Sign Out
       </Button>
+      <MaterialTable />
     </div>
   );
 };

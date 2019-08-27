@@ -13,6 +13,7 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withContext } from "./AppContext";
+import { MaterialTableDemo } from "./Materialtable";
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
@@ -53,42 +54,41 @@ const styles = theme => ({
 });
 
 class Home extends React.Component {
+  handleSubmit = e => {
+    e.preventDefault();
+    console.log(this.state);
+    this.props.logout();
+  };
 
-      handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(this.state);
-        this.props.logout();
-        }
-
-      render () {
-        const { classes } = this.props;
-        return (
-          <main className={classes.main}>
-            <CssBaseline />
-            <Paper className={classes.paper}>
-              <Typography component="h1" variant="h5">
-                Welcome {this.props.user.username} !
-              </Typography>
-              <div className={classes.usertypo}>
-              <Typography  variant="body1" gutterBottom>
-                {JSON.stringify(this.props.user)}
-              </Typography>
-              </div>
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={this.handleSubmit}
-                >
-                  Sign Out
-                </Button>
-
-            </Paper>
-          </main>
-        );
-      }
+  render() {
+    const { classes } = this.props;
+    return (
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+          <Typography component="h1" variant="h5">
+            Welcome {this.props.user.username} !
+          </Typography>
+          <div className={classes.usertypo}>
+            <Typography variant="body1" gutterBottom>
+              {JSON.stringify(this.props.user)}
+            </Typography>
+          </div>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={this.handleSubmit}
+          >
+            Sign Out
+          </Button>
+        </Paper>
+        <MaterialTableDemo className={classes.main} />
+      </main>
+    );
+  }
 }
 
 Home.propTypes = {
