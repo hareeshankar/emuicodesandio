@@ -204,6 +204,13 @@ export class AppContextProvider extends Component {
             errmsg: mesg
           }));
         }
+        if (errmsgobj === "422") {
+          mesg = "Sign Up Failed. Invalid Email/Username !";
+          console.log(mesg);
+          this.setState(state => ({
+            errmsg: mesg
+          }));
+        }
       });
   };
 

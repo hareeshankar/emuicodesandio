@@ -13,7 +13,6 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withContext } from "./AppContext";
-import { MaterialTableDemo } from "./Materialtable";
 import { Link } from "react-router-dom";
 
 const styles = theme => ({
@@ -85,7 +84,6 @@ class Home extends React.Component {
             Sign Out
           </Button>
         </Paper>
-        <MaterialTableDemo className={classes.main} />
       </main>
     );
   }
