@@ -7,6 +7,10 @@ body {
   background-image: url("./embg.jpg");
   color: black;
 }
+h1 {
+  position: absolute;
+  z-index: 2000;
+}
 .appbar {
   text-align: "center";
 }
