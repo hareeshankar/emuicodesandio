@@ -17,7 +17,7 @@ import "./styles.css";
 
 const NoMatch = ({ location }) => {
   return (
-    <div>
+    <div className="nomatch">
       <br /> <br /> <br />
       <h1>
         No match for <code>{location.pathname}</code>
