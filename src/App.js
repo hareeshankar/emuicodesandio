@@ -19,6 +19,7 @@ class App extends React.Component {
           <Route path="/login" component={SignIn} />
           <ProtectedRoute path="/home" component={Home} />
           <Route exact path="/" render={() => <Redirect to="/home" />} />
+          <Route component={NoMatch} />
         </Switch>
       </div>
     );
