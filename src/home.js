@@ -14,6 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withContext } from "./AppContext";
 import { Link } from "react-router-dom";
+import MaterialTable from "./MaterialTable";
 
 const styles = theme => ({
   main: {
@@ -63,7 +64,6 @@ class Home extends React.Component {
     const { classes } = this.props;
     return (
       <main className={classes.main}>
-        <CssBaseline />
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h5">
             Welcome {this.props.user.username} !

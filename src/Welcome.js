@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { withContext } from "./AppContext";
 import Button from "@material-ui/core/Button";
 import { MaterialTable } from "./Materialtable";

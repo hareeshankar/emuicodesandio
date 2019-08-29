@@ -25,7 +25,13 @@ export class AppContextProvider extends Component {
     //  NProgress.configure({ showSpinner: false });
     NProgress.configure({ minimum: 0.5 });
     this.state = {
-      events: [],
+      eventsdata: [],
+      eventscols: [
+        { title: "Event Name", field: "eventname" },
+        { title: "Event Date", field: "eventdate" },
+        { title: "Location", field: "eventloc" },
+        { title: "Description", field: "eventdes" }
+      ],
       user: JSON.parse(localStorage.getItem("user")) || {},
       token: localStorage.getItem("token") || "",
       errmsg: null
