@@ -8,7 +8,7 @@ const styles = theme => ({});
 class MaterialTableE extends React.Component {
   constructor(props) {
     super(props);
-    this.props.getUserEvents(this.props.user.userId);
+    this.props.getEvents(this.props.user.userId);
     this.state = {
       columns: this.props.eventscols,
       data: this.props.eventsdata
