@@ -13,8 +13,8 @@ import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { withContext } from "./AppContext";
+import Events from "./Events";
 import { Link } from "react-router-dom";
-import MaterialTable from "./MaterialTable";
 
 const styles = theme => ({
   main: {
@@ -73,6 +73,11 @@ class Home extends React.Component {
               {JSON.stringify(this.props.user)}
             </Typography>
           </div>
+          <div className={classes.usertypo}>
+            <Typography variant="body1" gutterBottom>
+              {JSON.stringify(this.props.events)}
+            </Typography>
+          </div>
           <Button
             type="submit"
             fullWidth
@@ -84,6 +89,7 @@ class Home extends React.Component {
             Sign Out
           </Button>
         </Paper>
+        <Events />
       </main>
     );
   }

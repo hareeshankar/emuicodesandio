@@ -25,7 +25,7 @@ export class AppContextProvider extends Component {
     //  NProgress.configure({ showSpinner: false });
     NProgress.configure({ minimum: 0.5 });
     this.state = {
-      eventsdata: [],
+      events: {},
       eventscols: [
         { title: "Event Name", field: "eventname" },
         { title: "Event Date", field: "eventdate" },
@@ -101,7 +101,23 @@ export class AppContextProvider extends Component {
     });
   };
   */
-
+  getEvents = userId => {
+    let getEventsURL =
+      'https://eventmanagerapi.herokuapp.com/api/events?filter={"where" : {"userId" : "' +
+      userId +
+      '" }}&access_token=' +
+      this.state.token;
+    eAxios
+      .get(getEventsURL)
+      .then(response => {
+        this.setState({ events: response.data });
+        console.log("response received:", response);
+        console.log("events retrieved: ", this.state.events);
+      })
+      .catch(function(error) {
+        console.log("AXIOS ERROR: ", error);
+      });
+  };
   getUser = userId => {
     let getUserURL =
       "https://eventmanagerapi.herokuapp.com/api/Users/" +
@@ -159,6 +175,7 @@ export class AppContextProvider extends Component {
         const userId = response.data.userId;
         localStorage.setItem("token", response.data.id);
         this.getUser(userId);
+        this.getEvents(userId);
         return response;
       })
       .catch(err => {
@@ -246,6 +263,7 @@ export class AppContextProvider extends Component {
           logout: this.logout,
           signup: this.signup,
           getUser: this.getUser,
+          getEvents: this.getEvents,
           ...this.state
         }}
       >
