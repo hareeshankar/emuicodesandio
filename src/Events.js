@@ -1,24 +1,63 @@
 import React, { Component } from "react";
-import axios from "axios";
 //import TableRow from "./TableRow";
 import Typography from "@material-ui/core/Typography";
 import { withContext } from "./AppContext";
+//import TableRow from "./TabRow";
+//import axios from "axios";
 
+//const eAxios = axios.create();
 class Events extends Component {
-  /*
+  /* constructor() {
+    super();
+    //  NProgress.configure({ showSpinner: false });
+    this.state = {
+      eventsst: [],
+      showevents: false
+    };
+  }
+  componentDidMount() {
+    let getEventsURL =
+      'https://eventmanagerapi.herokuapp.com/api/events?filter={"where" : {"userId" : "' +
+      this.props.user.userId +
+      '" }}&access_token=' +
+      this.props.token;
+    eAxios
+      .get(getEventsURL)
+      .then(response => {
+        this.setState({ eventsst: response.data });
+        console.log("response received:", response);
+        console.log("events retrieved: ", this.state.eventsst);
+        if (
+          typeof this.state.eventsst != "undefined" &&
+          this.state.eventsst != null &&
+          this.state.eventsst.length != null &&
+          this.state.eventsst.length > 0
+        ) {
+          console.log("Entered If block true");
+          this.setState({ showevents: true });
+        } else {
+          console.log("Entered If block false");
+          this.setState({ showevents: false });
+        }
+      })
+      .catch(function(error) {
+        console.log("AXIOS ERROR: ", error);
+      });
+  }
+  
   tabRow() {
-    return this.state.business.map(function(object, i) {
+    return this.props.events.map(function(object, i) {
       return <TableRow obj={object} key={i} />;
     });
   }
-*/
+  
+ */
   render() {
-    return !this.props.events ? (
+    return this.props.showevents ? (
       <div>
-        <h3 align="center">Business List</h3>
-        <Typography variant="body1" gutterBottom>
-          {JSON.stringify(this.props.events)}
-        </Typography>
+        {JSON.stringify(this.props.events)}
+        <br />
+        {JSON.stringify(this.props.showevents)}
       </div>
     ) : (
       <div>

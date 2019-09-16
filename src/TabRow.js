@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class TableRow extends Component {
   constructor(props) {
@@ -8,18 +9,27 @@ class TableRow extends Component {
   }
   delete() {
     axios
-      .get("http://localhost:4000/business/delete/" + this.props.obj._id)
+      .delete(
+        "https://eventmanagerapi.herokuapp.com/api/events/" +
+          this.props.events.id +
+          "?access_token=" +
+          this.props.token
+      )
       .then(console.log("Deleted"))
       .catch(err => console.log(err));
   }
   render() {
     return (
       <tr>
-        <td>{this.props.obj.person_name}</td>
-        <td>{this.props.obj.business_name}</td>
-        <td>{this.props.obj.business_gst_number}</td>
+        <td>{this.props.events.eventname}</td>
+        <td>{this.props.events.eventdate}</td>
+        <td>{this.props.events.eventloc}</td>
+        <td>{this.props.events.id}</td>
         <td>
-          <Link to={"/edit/" + this.props.obj._id} className="btn btn-primary">
+          <Link
+            to={"/edit/" + this.props.events.id}
+            className="btn btn-primary"
+          >
             Edit
           </Link>
         </td>

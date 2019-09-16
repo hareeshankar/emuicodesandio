@@ -26,6 +26,7 @@ export class AppContextProvider extends Component {
     NProgress.configure({ minimum: 0.5 });
     this.state = {
       events: {},
+      showevents: false,
       eventscols: [
         { title: "Event Name", field: "eventname" },
         { title: "Event Date", field: "eventdate" },
@@ -44,9 +45,9 @@ export class AppContextProvider extends Component {
     };
   }
 
-  //componentDidMount() {
-  //  this.getTodos();
-  //}
+  componentDidMount() {
+    this.getEvents(this.state.user.userId);
+  }
   /*
   getTodos = () => {
     return todoAxios.get("/api/todo").then(response => {
@@ -112,7 +113,22 @@ export class AppContextProvider extends Component {
       .then(response => {
         this.setState({ events: response.data });
         console.log("response received:", response);
+        //    this.setState({ events: response.data }, function() {
+        //     console.log(this.state.events);
+        //  });
         console.log("events retrieved: ", this.state.events);
+        if (
+          typeof this.state.events != "undefined" &&
+          this.state.events != null &&
+          this.state.events.length != null &&
+          this.state.events.length > 0
+        ) {
+          console.log("Entered If block true");
+          this.setState({ showevents: true });
+        } else {
+          console.log("Entered If block false");
+          this.setState({ showevents: false });
+        }
       })
       .catch(function(error) {
         console.log("AXIOS ERROR: ", error);
