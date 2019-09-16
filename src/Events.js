@@ -13,11 +13,18 @@ class Events extends Component {
   }
 */
   render() {
-    return (
+    return !this.props.events ? (
       <div>
         <h3 align="center">Business List</h3>
         <Typography variant="body1" gutterBottom>
           {JSON.stringify(this.props.events)}
+        </Typography>
+      </div>
+    ) : (
+      <div>
+        <h3 align="center">Business List</h3>
+        <Typography variant="body1" gutterBottom>
+          No Events Added. Please add events !
         </Typography>
       </div>
     );

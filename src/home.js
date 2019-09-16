@@ -73,11 +73,6 @@ class Home extends React.Component {
               {JSON.stringify(this.props.user)}
             </Typography>
           </div>
-          <div className={classes.usertypo}>
-            <Typography variant="body1" gutterBottom>
-              {JSON.stringify(this.props.events)}
-            </Typography>
-          </div>
           <Button
             type="submit"
             fullWidth
