@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+//import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+/*
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1)
+  },
+  input: {
+    display: "none"
+  },
+  submit: {
+    marginTop: theme.spacing.unit * 3
+  }
+})); */
 class TableRow extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +24,7 @@ class TableRow extends Component {
     axios
       .delete(
         "https://eventmanagerapi.herokuapp.com/api/events/" +
-          this.props.events.id +
+          this.props.obj.id +
           "?access_token=" +
           this.props.token
       )
@@ -19,24 +32,33 @@ class TableRow extends Component {
       .catch(err => console.log(err));
   }
   render() {
+    // const classes = useStyles();
     return (
       <tr>
-        <td>{this.props.events.eventname}</td>
-        <td>{this.props.events.eventdate}</td>
-        <td>{this.props.events.eventloc}</td>
-        <td>{this.props.events.id}</td>
+        <td>{this.props.obj.eventname}</td>
+        <td>{this.props.obj.eventdate}</td>
+        <td>{this.props.obj.eventloc}</td>
+        <td>{this.props.obj.eventdes}</td>
         <td>
-          <Link
-            to={"/edit/" + this.props.events.id}
-            className="btn btn-primary"
+          <Button
+            variant="contained"
+            color="primary"
+            // className={classes.button}
           >
-            Edit
-          </Link>
+            <Link to={"/edit/" + this.props.obj.id}>Edit</Link>
+          </Button>
         </td>
         <td>
-          <button onClick={this.delete} className="btn btn-danger">
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            //  className={classes.submit}
+            onClick={this.delete}
+          >
             Delete
-          </button>
+          </Button>
         </td>
       </tr>
     );

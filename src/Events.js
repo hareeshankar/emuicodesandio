@@ -2,7 +2,7 @@ import React, { Component } from "react";
 //import TableRow from "./TableRow";
 import Typography from "@material-ui/core/Typography";
 import { withContext } from "./AppContext";
-//import TableRow from "./TabRow";
+import TableRow from "./TabRow";
 //import axios from "axios";
 
 //const eAxios = axios.create();
@@ -44,17 +44,28 @@ class Events extends Component {
         console.log("AXIOS ERROR: ", error);
       });
   }
-  
-  tabRow() {
-    return this.props.events.map(function(object, i) {
-      return <TableRow obj={object} key={i} />;
+   */
+  tabRow(events, token1) {
+    return events.map(function(object, i) {
+      return <TableRow obj={object} key={i} token={token1} />;
     });
   }
-  
- */
+
   render() {
     return this.props.showevents ? (
       <div>
+        <table style={{ marginTop: 20 }}>
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Event Date</th>
+              <th>Event Location</th>
+              <th colSpan="2">Event Description</th>
+              <th colSpan="2">Action</th>
+            </tr>
+          </thead>
+          <tbody>{this.tabRow(this.props.events, this.props.token)}</tbody>
+        </table>
         {JSON.stringify(this.props.events)}
         <br />
         {JSON.stringify(this.props.showevents)}
