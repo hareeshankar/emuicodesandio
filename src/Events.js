@@ -54,7 +54,7 @@ class Events extends Component {
   render() {
     return this.props.showevents ? (
       <div>
-        <table style={{ marginTop: 20 }}>
+        <table id="events" style={{ marginTop: 20 }}>
           <thead>
             <tr>
               <th>Event Name</th>
@@ -66,9 +66,6 @@ class Events extends Component {
           </thead>
           <tbody>{this.tabRow(this.props.events, this.props.token)}</tbody>
         </table>
-        {JSON.stringify(this.props.events)}
-        <br />
-        {JSON.stringify(this.props.showevents)}
       </div>
     ) : (
       <div>

@@ -31,7 +31,4 @@ body {
 .flexbox {
   display: flex;
   flex-wrap: nowrap;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
 }

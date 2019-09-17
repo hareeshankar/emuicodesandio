@@ -36,7 +36,7 @@ class TableRow extends Component {
     return (
       <tr>
         <td>{this.props.obj.eventname}</td>
-        <td>{this.props.obj.eventdate}</td>
+        <td>{this.props.obj.eventdate.slice(0, 10)}</td>
         <td>{this.props.obj.eventloc}</td>
         <td>{this.props.obj.eventdes}</td>
         <td>
