@@ -21,12 +21,7 @@ const styles = theme => ({
     width: "auto",
     display: "block", // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
-      marginLeft: "auto",
-      marginRight: "auto"
-    }
+    marginRight: theme.spacing.unit * 3
   },
   paper: {
     marginTop: theme.spacing.unit * 20,
@@ -59,12 +54,7 @@ class Home extends React.Component {
     console.log(this.state);
     this.props.logout();
   };
-
-  render() {
-    const { classes } = this.props;
-    return (
-      <main className={classes.main}>
-        <Paper className={classes.paper}>
+  /*
           <Typography component="h1" variant="h5">
             Welcome {this.props.user.username} !
           </Typography>
@@ -83,8 +73,14 @@ class Home extends React.Component {
           >
             Sign Out
           </Button>
+*/
+  render() {
+    const { classes } = this.props;
+    return (
+      <main className={classes.main}>
+        <Paper className={classes.paper}>
+          <Events />
         </Paper>
-        <Events />
       </main>
     );
   }

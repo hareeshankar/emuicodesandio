@@ -22,6 +22,9 @@ body {
 .buttonnavbar {
   position: fixed;
   right: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
   top: 15px;
 }
 .toolbar: {

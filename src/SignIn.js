@@ -39,7 +39,7 @@ const styles = theme => ({
       .spacing.unit * 3}px`
   },
   typo: {
-    marginTop: theme.spacing.unit * 10,
+    marginTop: theme.spacing.unit * 11,
     textAlign: "center"
   },
   typo1: {

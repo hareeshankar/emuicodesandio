@@ -54,7 +54,7 @@ class Events extends Component {
   render() {
     return this.props.showevents ? (
       <div>
-        <table id="events" style={{ marginTop: 20 }}>
+        <table>
           <thead>
             <tr>
               <th>Event Name</th>
